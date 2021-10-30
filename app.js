@@ -29,7 +29,8 @@ if(localStorage.getItem('navState') == 'on'){
 }else{
   nav.classList.remove('show');
 }
-const blocksNum = localStorage.getItem('blocks');
+const blocksNum = localStorage.getItem('blocks'); //number type
+const gridsNum = JSON.parse(localStorage.getItem('grids')); //array type
 
 
 //nav
@@ -59,7 +60,7 @@ for(i = 0; i < 4; i++){
 //main functions
 function howManyGrid(array, num){
   // console.log(array, num);
-  localStorage.setItem('grids', num);
+  localStorage.setItem('grids', JSON.stringify(num));
 }
 
 function howManyBlocks(num){
@@ -72,7 +73,18 @@ function howManyBlocks(num){
 //CHOOSE HOW MANY GRIDS ARE GONNA USED..
 navListPics = Array.from(document.getElementsByClassName('navListPic'));
 //각각의 그리드 이미지를가 html tag가 만들어진 뒤, getElement해야 한다.
-
+if(gridsNum){
+  console.log(gridsNum);
+  gridsNum.forEach(value => {
+    // console.log(navListPics);
+    navListPics.forEach(pic => {
+      if(value == pic.getAttribute('value')){
+          // console.log(pic.parentElement);
+          pic.classList.add('listSelected');
+      }
+    })
+  })
+}
 navListPics.forEach(data => {
   data.addEventListener('click', function(){
     data.classList.toggle('listSelected');
