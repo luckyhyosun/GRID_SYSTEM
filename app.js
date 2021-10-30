@@ -1,4 +1,5 @@
 const small_grid = document.querySelector('.small_grid');
+const small_text = document.querySelector('.small_text');
 const icon = document.getElementById("icon");
 const icon1 = document.getElementById("a");
 const icon2 = document.getElementById("b");
@@ -39,7 +40,7 @@ const gridsNum = JSON.parse(localStorage.getItem('grids')); //array type
 
 
 
-//nav
+//hanburger btn
 icon.addEventListener('click', function() {
   icon1.classList.toggle('a');
   icon2.classList.toggle('c');
@@ -52,44 +53,54 @@ icon.addEventListener('click', function() {
   }
 });
 
-
 //making nav list
 for(i = 0; i < 4; i++){
   navList.innerHTML += `
   <li class="eachListImg">
     <img class="navListPic" src="imgs/grid_${i}.png" value="${i}">
   </li>
-  `
+  `;
 }
 
 
 
 //main functions
-function howManyGrid(num){
-  var iteration = localStorage.getItem('blocks');
-  navRangeBar.addEventListener("input", function(){
-    const navRangeValue = navRangeBar.value;
-    target.innerHTML = navRangeValue;
-    iteration = navRangeValue;
-
-    let gridHtml = '';
-    for(i=0; i<iteration; i++){
-      num.forEach(num => {
-        gridHtml += `<img class = "eachRect" src =imgs/grid_${num}.png>`
-      })
-    }
-    generateSystem(gridHtml);
-  });
-
+function makeHtml(array, iteration){
   let gridHtml = '';
   for(i=0; i<iteration; i++){
-    num.forEach(num => {
-      gridHtml += `<img class = "eachRect" src =imgs/grid_${num}.png>`
+    array.forEach(array => {
+      gridHtml += `<img class = "eachRect" src =imgs/grid_${array}.png>`
     })
   }
   generateSystem(gridHtml);
 }
 
+function howManyGrid(array){
+  var iteration = localStorage.getItem('blocks');
+  navRangeBar.addEventListener("input", function(){
+    const navRangeValue = navRangeBar.value;
+    target.innerHTML = navRangeValue;
+    iteration = navRangeValue;
+    makeHtml(array, iteration);
+  });
+
+  makeHtml(array, iteration);
+}
+
+function generateSystem(html){
+  small_grid.innerHTML = html;
+  console.log(small_grid.children);
+
+  const eachRects = Array.from(document.getElementsByClassName('eachRect'));
+
+  eachRects.forEach(element => {
+    element.style.cssText = `
+      top: ${height_array[Math.floor(Math.random() * 11)]}px;
+      left: ${width_array[Math.floor(Math.random() * 7)]}px;
+      transform: rotate(${rotate_deg[Math.floor(Math.random() * 4)]}deg);
+    `;
+  })
+}
 
 
 
@@ -137,24 +148,5 @@ navRangeBar.addEventListener("input", function(){
   const navRangeValue = navRangeBar.value;
   target.innerHTML = navRangeValue;
   localStorage.setItem('blocks', navRangeValue);
-  // howManyBlocks(navRangeValue);
+  howManyGrid(JSON.parse(localStorage.getItem('grids')));
 });
-
-
-
-
-//generate grid System
-function generateSystem(html){
-  small_grid.innerHTML = html;
-  console.log(small_grid.children);
-
-  const eachRects = Array.from(document.getElementsByClassName('eachRect'));
-
-  eachRects.forEach(element => {
-    element.style.cssText = `
-      top: ${height_array[Math.floor(Math.random() * 11)]}px;
-      left: ${width_array[Math.floor(Math.random() * 7)]}px;
-      transform: rotate(${rotate_deg[Math.floor(Math.random() * 4)]}deg);
-    `;
-  })
-}
