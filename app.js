@@ -6,23 +6,26 @@ const icon3 = document.getElementById("c");
 const nav = document.getElementById('nav');
 const navList = document.querySelector('.navList');
 const navRangeBar = document.querySelector('.navRangeBar');
-let navListPics;
 let navSelectedList = [];
-let smallRectHtml;
-let navRangeValue;
 let usingGridArray = [];
 
-const width_array = [0, 100, 200, 300];
-const height_array = [0, 100, 200, 300, 400, 500];
+
+const width_array = [0, 50, 100, 150, 200, 250, 300];
+const height_array = [0, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500];
 const rotate_deg = [0, 90, 180, 270];
 
-//initial setting
-// localStorage.setItem('grids', 3);
-// localStorage.setItem('blocks', 7);
 
-//refresh with nav setting
+// refresh with nav setting
 document.querySelector('.btn').addEventListener('click', function(){
-  location.reload();
+  let gridHtml = '';
+  const iteration = localStorage.getItem('blocks');
+  const num = JSON.parse(localStorage.getItem('grids'));
+  for(i=0; i<iteration; i++){
+    num.forEach(num => {
+      gridHtml += `<img class = "eachRect" src =imgs/grid_${num}.png>`
+    })
+  }
+  generateSystem(gridHtml);
 })
 if(localStorage.getItem('navState') == 'on'){
   nav.classList.add('show');
@@ -31,6 +34,9 @@ if(localStorage.getItem('navState') == 'on'){
 }
 const blocksNum = localStorage.getItem('blocks'); //number type
 const gridsNum = JSON.parse(localStorage.getItem('grids')); //array type
+
+
+
 
 
 //nav
@@ -47,7 +53,6 @@ icon.addEventListener('click', function() {
 });
 
 
-
 //making nav list
 for(i = 0; i < 4; i++){
   navList.innerHTML += `
@@ -57,24 +62,43 @@ for(i = 0; i < 4; i++){
   `
 }
 
+
+
+
 //main functions
-function howManyGrid(array, num){
-  // console.log(array, num);
-  localStorage.setItem('grids', JSON.stringify(num));
+function howManyGrid(num){
+  var iteration = localStorage.getItem('blocks');
+  navRangeBar.addEventListener("input", function(){
+    const navRangeValue = navRangeBar.value;
+    target.innerHTML = navRangeValue;
+    iteration = navRangeValue;
+
+    let gridHtml = '';
+    for(i=0; i<iteration; i++){
+      num.forEach(num => {
+        gridHtml += `<img class = "eachRect" src =imgs/grid_${num}.png>`
+      })
+    }
+    generateSystem(gridHtml);
+  });
+
+  let gridHtml = '';
+  for(i=0; i<iteration; i++){
+    num.forEach(num => {
+      gridHtml += `<img class = "eachRect" src =imgs/grid_${num}.png>`
+    })
+  }
+  generateSystem(gridHtml);
 }
 
-function howManyBlocks(num){
-  // console.log(num);
-  localStorage.setItem('blocks', num);
-}
 
 
 
 //CHOOSE HOW MANY GRIDS ARE GONNA USED..
-navListPics = Array.from(document.getElementsByClassName('navListPic'));
+const navListPics = Array.from(document.getElementsByClassName('navListPic'));
 //각각의 그리드 이미지를가 html tag가 만들어진 뒤, getElement해야 한다.
 if(gridsNum){
-  console.log(gridsNum);
+  // console.log(gridsNum);
   gridsNum.forEach(value => {
     // console.log(navListPics);
     navListPics.forEach(pic => {
@@ -97,7 +121,8 @@ navListPics.forEach(data => {
       valueArray.push(data.getAttribute('value'));
       // console.log(valueArray);
     })
-    howManyGrid(navSelectedList, valueArray);
+    localStorage.setItem('grids', JSON.stringify(valueArray));
+    howManyGrid(valueArray);
   })
 })
 
@@ -110,28 +135,26 @@ if(blocksNum){
   navRangeBar.value = blocksNum;
 }
 navRangeBar.addEventListener("input", function(){
-  navRangeValue = navRangeBar.value;
+  const navRangeValue = navRangeBar.value;
   target.innerHTML = navRangeValue;
-  // console.log(navRangeValue);
-  howManyBlocks(navRangeValue);
+  localStorage.setItem('blocks', navRangeValue);
+  // howManyBlocks(navRangeValue);
 });
 
 
 
 
 //generate grid System
-for(i = 0; i < 5; i++){
-  //make each img tags
-  let html = '<img class = "eachRect" src =imgs/grid_3.png>';
-  small_grid.innerHTML += html;
+function generateSystem(html){
+  small_grid.innerHTML = html;
+  console.log(small_grid.children);
 
-  //add position to each elements
   const eachRects = Array.from(document.getElementsByClassName('eachRect'));
 
   eachRects.forEach(element => {
     element.style.cssText = `
-      top: ${height_array[Math.floor(Math.random() * 6)]}px;
-      left: ${width_array[Math.floor(Math.random() * 4)]}px;
+      top: ${height_array[Math.floor(Math.random() * 11)]}px;
+      left: ${width_array[Math.floor(Math.random() * 7)]}px;
       transform: rotate(${rotate_deg[Math.floor(Math.random() * 4)]}deg);
     `;
   })
