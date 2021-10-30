@@ -42,14 +42,17 @@ const gridsNum = JSON.parse(localStorage.getItem('grids')); //array type
 
 //hanburger btn
 icon.addEventListener('click', function() {
-  icon1.classList.toggle('a');
-  icon2.classList.toggle('c');
-  icon3.classList.toggle('b');
   nav.classList.toggle('show');
   if(nav.classList.contains('show')){
     localStorage.setItem('navState', 'on');
+    icon1.classList.add('a');
+    icon2.classList.add('c');
+    icon3.classList.add('b');
   }else{
     localStorage.setItem('navState', 'off');
+    icon1.classList.remove('a');
+    icon2.classList.remove('c');
+    icon3.classList.remove('b');
   }
 });
 
