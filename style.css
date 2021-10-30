@@ -1,0 +1,219 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  width: 100%;
+  height: 100%;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+}
+
+.container{
+  border: 1px solid;
+  position: absolute;
+  width: 400px;
+  height: 600px;
+  top: 50%;
+  left: 50%;
+  margin-top: -300px;
+  margin-left: -200px;
+  overflow: hidden;
+}
+
+.small_grid{
+  position: absolute;
+  z-index: -1;
+}
+
+.eachRect{
+  position: absolute;
+  width: 100px;
+  height: 100px;
+}
+.text_img{
+  position: absolute;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+}
+
+.bg_grid{
+  position: absolute;
+   z-index: 1;
+   top:0;
+   left:0;
+   width: 100%;
+   height: 100%;
+}
+
+
+/* nav */
+.icon-1, .icon-2, .icon-3 {
+    position: absolute;
+    left: 25%;
+    top: 50%;
+    width: 32px;
+    height: 3px;
+    background-color: #fff;
+    transition: all 400ms cubic-bezier(.84,.06,.52,1.8);
+}
+.icon-1 {
+  transform: translateY(-8px);
+  animation-delay: 100ms;
+}
+
+.icon-3 {
+  transform: translateY(8px);
+  animation-delay: 250ms;
+}
+.hamburger-icon {
+  position: absolute;
+  height: 60px;
+  width: 60px;
+  top: 5%;
+  right: 3%;
+  z-index: 1000;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: all 0.2s ease-in-out;
+  background: #ff00f3;
+}
+.hamburger-icon:hover{
+  transform: scale(1.2);
+}
+
+.icon-1.a {
+  transform: rotate(40deg);
+}
+.icon-3.b {
+  transform: rotate(-40deg);
+}
+.icon-2.c {
+  opacity: 0;
+}
+.clear {
+  clear: both;
+}
+
+
+/* slide bar */
+nav {
+  border: 1px solid #ff00f3;
+  position: absolute;
+  top: 4%;
+  right: 2%;
+  width: 0%;
+  z-index: 10;
+  opacity: 0;
+  transition: all 600ms cubic-bezier(.62,.04,.3,1.56);
+  transition-delay: 100ms;
+}
+
+ nav.show {
+  animation: slideIn 0.6s cubic-bezier(.62,.04,.3,1.56);
+  animation-fill-mode: forwards;
+  width: 250px;
+  height:450px;
+  transform:scale(1);
+  opacity: 1;
+  background-color: #fff;
+}
+
+.navContainer{
+  display: inline-block;
+  width: 200px;
+  height: 450px;
+}
+
+
+.navList{
+  width: 200px;
+}
+
+.eachListImg{
+  list-style: none;
+  display: inline-block;
+  width: 80px;
+  height:  80px;
+}
+
+.navListPic{
+  margin: 10px;
+  width: 50px;
+  height: 50px;
+  border: 1px solid #ff00f3;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.navListPic:hover{
+  box-shadow: 0 0 11px rgba(33,33,33,.4);
+}
+
+.navList .listSelected{
+  opacity: 1;
+  border: 4px solid #ff00f3;
+}
+
+input[type="range"] {
+  transform: rotate(270deg);
+}
+.navRangeBar{
+  position: absolute;
+  bottom: 150px;
+  left: -75px;
+
+  -webkit-appearance: none;
+  height: 10px;
+  width: 90%;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  /* opacity: 0.7; */
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 23px;
+  height: 24px;
+  border: 0;
+  background-color: #ff00f3;
+  cursor: pointer;
+}
+
+input[type=range]::-moz-range-thumb {
+  width: 23px;
+  height: 24px;
+  border: 0;
+  background-color: #ff00f3;
+  cursor: pointer;
+}
+
+.navRangeText{
+  width: 50px;
+  height: 230px;
+  position: relative;
+  left: 100px;
+  top: 20px;
+}
+
+.navRangeText p:first-child{
+  position: absolute;
+  top:0;
+}
+.navRangeText p:nth-child(2){
+  position: absolute;
+  top:30%;
+  font-size: 4rem;
+  color: #ff00f3;
+}
+
+.navRangeText p:last-child{
+  position: absolute;
+  bottom: 0;
+}
