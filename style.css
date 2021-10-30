@@ -115,7 +115,7 @@ nav {
   animation: slideIn 0.6s cubic-bezier(.62,.04,.3,1.56);
   animation-fill-mode: forwards;
   width: 250px;
-  height:450px;
+  height:500px;
   transform:scale(1);
   opacity: 1;
   background-color: #fff;
@@ -124,7 +124,7 @@ nav {
 .navContainer{
   display: inline-block;
   width: 200px;
-  height: 450px;
+  height: 500px;
 }
 
 
@@ -162,7 +162,7 @@ input[type="range"] {
 }
 .navRangeBar{
   position: absolute;
-  bottom: 150px;
+  bottom: 200px;
   left: -75px;
 
   -webkit-appearance: none;
@@ -216,4 +216,24 @@ input[type=range]::-moz-range-thumb {
 .navRangeText p:last-child{
   position: absolute;
   bottom: 0;
+}
+
+.btn{
+  position:absolute;
+  bottom:20px;
+  left: 20px;
+  width: 150px;
+  height: 50px;
+  padding: 0;
+  border: none;
+  color: #fff;
+  background-color: #ff00f3;
+  font-size: 1rem;
+  font-weight: 300;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.btn:hover{
+  box-shadow: 0 0 11px rgba(33,33,33,.4);
 }
