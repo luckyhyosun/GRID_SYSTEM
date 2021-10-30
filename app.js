@@ -64,7 +64,6 @@ for(i = 0; i < 4; i++){
 
 
 
-
 //main functions
 function howManyGrid(num){
   var iteration = localStorage.getItem('blocks');
