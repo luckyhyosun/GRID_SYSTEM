@@ -7,6 +7,8 @@ const icon3 = document.getElementById("c");
 const nav = document.getElementById('nav');
 const navList = document.querySelector('.navList');
 const navRangeBar = document.querySelector('.navRangeBar');
+const bg_grid = document.querySelector('.bg_grid');
+const bg_checked = document.getElementById('bg_checked');
 let navSelectedList = [];
 let usingGridArray = [];
 
@@ -64,6 +66,17 @@ for(i = 0; i < 4; i++){
   </li>
   `;
 }
+
+
+//check bg_checked
+bg_checked.addEventListener('click', function(e){
+  console.log(e.target.checked);
+  if(!e.target.checked){
+    bg_grid.classList.add('hide');
+  }else{
+    bg_grid.classList.remove('hide');
+  }
+})
 
 
 
