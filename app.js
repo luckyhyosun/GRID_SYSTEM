@@ -70,8 +70,8 @@ for(i = 0; i < 4; i++){
 
 //check bg_checked
 bg_checked.addEventListener('click', function(e){
-  console.log(e.target.checked);
-  if(!e.target.checked){
+  // console.log(e.target.checked);
+  if(e.target.checked){
     bg_grid.classList.add('hide');
   }else{
     bg_grid.classList.remove('hide');
