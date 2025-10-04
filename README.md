@@ -1,6 +1,6 @@
 # GRID_SYSTEM
 
-https://hellobonjourlucky.github.io/GRID_SYSTEM/
+[Link](https://luckyhyosun.github.io/GRID_SYSTEM/)
 
 
 <img width="1044" alt="11" src="https://user-images.githubusercontent.com/73243458/146067016-9f57377e-e847-46dd-9a99-05910fa8542f.png">
